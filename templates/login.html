@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - CareerAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+
+<body class="career-login-page">
+
+
+    <!-- NAVBAR -->
+    <header class="career-login-navbar">
+
+        <a href="{{ url_for('index') }}"
+           class="career-login-logo">
+            CareerAI
+        </a>
+
+        <nav class="career-login-nav">
+
+            <a href="{{ url_for('index') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('register') }}">
+                Register
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN LOGIN SECTION -->
+    <main class="career-login-main">
+
+        <div class="career-login-wrapper">
+
+
+            <!-- LEFT INFORMATION -->
+            <section class="career-login-intro">
+
+                <span class="career-login-badge">
+                    AI CAREER ASSISTANT
+                </span>
+
+                <h1>
+                    Welcome Back
+                </h1>
+
+                <p>
+                    Login to CareerAI and continue your journey
+                    toward finding internships that match your
+                    skills and career interests.
+                </p>
+
+
+                <div class="career-login-info-card">
+
+                    <div class="career-login-ai-icon">
+                        AI
+                    </div>
+
+                    <h2>
+                        Smart Internship Matching
+                    </h2>
+
+                    <p>
+                        Upload your resume, let CareerAI analyze
+                        your skills, and discover personalized
+                        internship opportunities.
+                    </p>
+
+                    <div class="career-login-features">
+
+                        <div>
+                            <span>✓</span>
+                            Resume Analysis
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            Skill Detection
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            AI Internship Matching
+                        </div>
+
+                        <div>
+                            <span>✓</span>
+                            Skill Gap Analysis
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- LOGIN FORM -->
+            <section class="career-login-form-section">
+
+                <div class="career-login-card">
+
+                    <div class="career-login-card-header">
+
+                        <h2>
+                            Login to CareerAI
+                        </h2>
+
+                        <p>
+                            Enter your account details to continue.
+                        </p>
+
+                    </div>
+
+
+                    <!-- FLASH MESSAGES -->
+                    {% with messages = get_flashed_messages() %}
+
+                        {% if messages %}
+
+                            {% for message in messages %}
+
+                                <div class="career-login-alert">
+                                    {{ message }}
+                                </div>
+
+                            {% endfor %}
+
+                        {% endif %}
+
+                    {% endwith %}
+
+
+                    <!-- FORM -->
+                    <form method="POST"
+                          class="career-login-form">
+
+
+                        <div class="career-login-field">
+
+                            <label for="email">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required>
+
+                        </div>
+
+
+                        <div class="career-login-field">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                required>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="career-login-button">
+
+                            Login →
+
+                        </button>
+
+                    </form>
+
+
+                    <p class="career-login-register">
+
+                        Don't have an account?
+
+                        <a href="{{ url_for('register') }}">
+                            Register here
+                        </a>
+
+                    </p>
+
+
+                    <a href="{{ url_for('index') }}"
+                       class="career-login-home">
+                        ← Back to Home
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="career-login-footer">
+
+        <p>
+            © 2026 CareerAI · AI Internship Recommendation System
+        </p>
+
+    </footer>
+
+
+</body>
+</html>

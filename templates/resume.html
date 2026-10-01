@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analysis - CareerAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="career-resume-page">
+
+    <!-- NAVBAR -->
+    <header class="career-resume-navbar">
+
+        <a href="{{ url_for('dashboard') }}"
+           class="career-resume-logo">
+            CareerAI
+        </a>
+
+        <nav class="career-resume-nav">
+
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('profile') }}">
+                Profile
+            </a>
+
+            <a href="{{ url_for('recommendations') }}">
+                Recommendations
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="career-resume-main">
+
+        <div class="career-resume-wrapper">
+
+            <!-- PAGE HEADING -->
+            <section class="career-resume-heading">
+
+                <span class="career-resume-badge">
+                    AI RESUME ANALYSIS
+                </span>
+
+                <h1>
+                    Upload Your Resume
+                </h1>
+
+                <p>
+                    Upload your PDF resume and let CareerAI analyze
+                    your skills and find suitable internship opportunities.
+                </p>
+
+            </section>
+
+
+            <!-- UPLOAD CARD -->
+            <section class="career-resume-card">
+
+                <div class="career-resume-icon">
+                    📄
+                </div>
+
+                <h2>
+                    Upload your PDF resume
+                </h2>
+
+                <p class="career-resume-card-text">
+                    Your resume will be analyzed by the AI Career Agent
+                    to identify your skills and career opportunities.
+                </p>
+
+
+                <!-- FLASH MESSAGES -->
+                {% with messages = get_flashed_messages() %}
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+                            <div class="career-resume-alert">
+                                {{ message }}
+                            </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% endwith %}
+
+
+                <!-- RESUME UPLOAD FORM -->
+                <form
+                    action="{{ url_for('upload_resume') }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    class="career-resume-form">
+
+                    <div class="career-resume-file-box">
+
+                        <label for="career-resume-file">
+                            Select Resume PDF
+                        </label>
+
+                        <input
+                            type="file"
+                            id="career-resume-file"
+                            name="resume"
+                            accept=".pdf"
+                            required>
+
+                        <small>
+                            PDF files only
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="career-resume-upload-btn">
+
+                        Upload & Analyze Resume →
+
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- WHAT HAPPENS NEXT -->
+            <section class="career-resume-process">
+
+                <div class="career-resume-process-heading">
+
+                    <span>
+                        AI PROCESS
+                    </span>
+
+                    <h2>
+                        What happens next?
+                    </h2>
+
+                </div>
+
+
+                <div class="career-resume-steps">
+
+                    <div class="career-resume-step">
+
+                        <div class="career-resume-step-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Resume Analysis
+                        </h3>
+
+                        <p>
+                            Your resume text is extracted and processed.
+                        </p>
+
+                    </div>
+
+
+                    <div class="career-resume-step">
+
+                        <div class="career-resume-step-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Skill Detection
+                        </h3>
+
+                        <p>
+                            Important technical and professional skills
+                            are identified.
+                        </p>
+
+                    </div>
+
+
+                    <div class="career-resume-step">
+
+                        <div class="career-resume-step-number">
+                            03
+                        </div>
+
+                        <h3>
+                            AI Matching
+                        </h3>
+
+                        <p>
+                            Your skills are compared with available
+                            internship opportunities.
+                        </p>
+
+                    </div>
+
+
+                    <div class="career-resume-step">
+
+                        <div class="career-resume-step-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Recommendations
+                        </h3>
+
+                        <p>
+                            Suitable internships and potential skill
+                            gaps are displayed.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="career-resume-footer">
+
+        <p>
+            © 2026 CareerAI · AI Internship Recommendation System
+        </p>
+
+    </footer>
+
+</body>
+</html>
+

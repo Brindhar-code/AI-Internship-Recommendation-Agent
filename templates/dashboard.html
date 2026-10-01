@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - CareerAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="career-dashboard">
+
+    <!-- NAVBAR -->
+    <header class="career-dashboard-navbar">
+
+        <a href="{{ url_for('dashboard') }}" class="career-dashboard-logo">
+            CareerAI
+        </a>
+
+        <nav class="career-dashboard-nav">
+
+            <a href="{{ url_for('dashboard') }}" class="active">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('profile') }}">
+                Profile
+            </a>
+
+            <a href="{{ url_for('resume') }}">
+                Resume
+            </a>
+
+            <a href="{{ url_for('recommendations') }}">
+                Recommendations
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN DASHBOARD -->
+    <main class="career-dashboard-main">
+
+        <!-- WELCOME -->
+        <section class="career-dashboard-welcome">
+
+            <div>
+                <span class="career-dashboard-label">
+                    AI-POWERED CAREER ASSISTANT
+                </span>
+
+                <h1>
+                    Welcome,
+                    {{ user.name if user else session.get('name', 'Student') }}! 👋
+                </h1>
+
+                <p>
+                    Your AI-powered internship career assistant is ready.
+                    Explore your profile, resume and personalized recommendations.
+                </p>
+            </div>
+
+            <div class="career-dashboard-ai-badge">
+                <span>AI</span>
+                <small>Career Assistant</small>
+            </div>
+
+        </section>
+
+
+        <!-- DASHBOARD CARDS -->
+        <section class="career-dashboard-cards">
+
+            <!-- PROFILE -->
+            <div class="career-dashboard-card">
+
+                <div class="career-dashboard-card-icon">
+                    👤
+                </div>
+
+                <h2>Profile</h2>
+
+                <p>
+                    Add your education, department, CGPA and skills
+                    to improve your internship recommendations.
+                </p>
+
+                <a href="{{ url_for('profile') }}"
+                   class="career-dashboard-button">
+                    View Profile →
+                </a>
+
+            </div>
+
+
+            <!-- RESUME -->
+            <div class="career-dashboard-card">
+
+                <div class="career-dashboard-card-icon">
+                    📄
+                </div>
+
+                <h2>Resume Analysis</h2>
+
+                <p>
+                    Upload your resume and let CareerAI analyze
+                    your skills and experience.
+                </p>
+
+                <a href="{{ url_for('resume') }}"
+                   class="career-dashboard-button">
+                    Upload Resume →
+                </a>
+
+            </div>
+
+
+            <!-- RECOMMENDATIONS -->
+            <div class="career-dashboard-card">
+
+                <div class="career-dashboard-card-icon">
+                    🤖
+                </div>
+
+                <h2>AI Recommendations</h2>
+
+                <p>
+                    Discover internship opportunities that match
+                    your skills and profile.
+                </p>
+
+                <a href="{{ url_for('recommendations') }}"
+                   class="career-dashboard-button">
+                    View Recommendations →
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- AI CAREER AGENT -->
+        <section class="career-agent-panel">
+
+            <div class="career-agent-header">
+
+                <div class="career-agent-icon">
+                    AI
+                </div>
+
+                <div>
+                    <h2>AI Career Agent</h2>
+
+                    <p>
+                        Your intelligent assistant for internship discovery
+                        and career development.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="career-agent-description">
+
+                <p>
+                    CareerAI analyzes your profile and resume,
+                    identifies relevant skills, finds suitable internships
+                    and highlights potential skill gaps.
+                </p>
+
+            </div>
+
+
+            <!-- AI FLOW -->
+            <div class="career-agent-flow">
+
+                <div class="career-flow-item">
+                    <div class="career-flow-number">01</div>
+                    <strong>Resume</strong>
+                    <span>Upload & analyze</span>
+                </div>
+
+                <div class="career-flow-arrow">
+                    →
+                </div>
+
+                <div class="career-flow-item">
+                    <div class="career-flow-number">02</div>
+                    <strong>Skill Analysis</strong>
+                    <span>Identify your skills</span>
+                </div>
+
+                <div class="career-flow-arrow">
+                    →
+                </div>
+
+                <div class="career-flow-item">
+                    <div class="career-flow-number">03</div>
+                    <strong>AI Agent</strong>
+                    <span>Process your profile</span>
+                </div>
+
+                <div class="career-flow-arrow">
+                    →
+                </div>
+
+                <div class="career-flow-item">
+                    <div class="career-flow-number">04</div>
+                    <strong>Internship Matching</strong>
+                    <span>Find suitable roles</span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="career-dashboard-footer">
+
+        <p>
+            © 2026 CareerAI · AI-Powered Career Assistant
+        </p>
+
+    </footer>
+
+</body>
+</html>

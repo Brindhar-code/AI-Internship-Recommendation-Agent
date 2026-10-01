@@ -1,0 +1,7 @@
+﻿__pycache__/
+*.pyc
+career_assistant.db
+internship.db
+uploads/
+uploads_old
+.env

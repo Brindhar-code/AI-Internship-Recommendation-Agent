@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerAI - AI Internship Recommendation</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="/" class="logo">
+            CareerAI
+        </a>
+
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="#features">Features</a>
+            <a href="{{ url_for('register') }}">Get Started</a>
+            <a href="{{ url_for('login') }}">Login</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    AI-POWERED CAREER ASSISTANT
+                </p>
+
+                <h1>
+                    Find internships that match your skills.
+                </h1>
+
+                <p class="hero-text">
+                    Upload your resume and let CareerAI analyze your
+                    skills, discover suitable internships, and identify
+                    the skills you can develop next.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="{{ url_for('register') }}" class="btn">
+                        Analyze My Resume →
+                    </a>
+
+                    <a href="{{ url_for('login') }}"
+                       class="btn secondary-btn">
+                        Login
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= AI CARD ================= -->
+
+            <div class="hero-card">
+
+                <div class="orb">
+                    AI
+                </div>
+
+                <h3>
+                    Smart Career Matching
+                </h3>
+
+                <p>
+                    Your resume is analyzed locally to generate
+                    personalized internship recommendations.
+                </p>
+
+                <div class="mini-row">
+                    <span>Resume Analysis</span>
+                    <b>✓</b>
+                </div>
+
+                <div class="mini-row">
+                    <span>AI Matching</span>
+                    <b>✓</b>
+                </div>
+
+                <div class="mini-row">
+                    <span>Skill Gap Analysis</span>
+                    <b>✓</b>
+                </div>
+
+                <div class="mini-row">
+                    <span>Processing</span>
+                    <b>Local</b>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FEATURES ================= -->
+
+        <section class="features" id="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📄
+                </div>
+
+                <h3>
+                    Resume Analysis
+                </h3>
+
+                <p>
+                    Upload your PDF resume and let CareerAI
+                    identify your important skills and information.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🤖
+                </div>
+
+                <h3>
+                    AI Internship Matching
+                </h3>
+
+                <p>
+                    Get internship recommendations based on
+                    your skills, education and profile.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Skill Gap Analysis
+                </h3>
+
+                <p>
+                    Discover the skills you can develop to become
+                    suitable for your desired internships.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 CareerAI. AI Internship Recommendation System.
+        </p>
+
+    </footer>
+
+
+</body>
+</html>

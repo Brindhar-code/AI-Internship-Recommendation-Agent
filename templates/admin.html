@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        AI Internship Recommendation - Admin
+    </div>
+
+    <nav>
+        <a href="{{ url_for('admin') }}">Dashboard</a>
+        <a href="{{ url_for('students') }}">Students</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+
+</header>
+
+<main class="admin-container">
+
+    <section class="page-heading">
+
+        <h1>Admin Dashboard</h1>
+
+        <p>
+            Manage internship opportunities and student information.
+        </p>
+
+    </section>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+    <section class="admin-form">
+
+        <h2>Add Internship</h2>
+
+        <form method="POST">
+
+            <div class="form-group">
+                <label for="title">Internship Title</label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Example: Python Developer Intern"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="company">Company</label>
+
+                <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    placeholder="Company name"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location</label>
+
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="Example: Chennai / Remote">
+            </div>
+
+            <div class="form-group">
+                <label for="skills">Required Skills</label>
+
+                <input
+                    type="text"
+                    id="skills"
+                    name="skills"
+                    placeholder="Python, Flask, SQL">
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Duration</label>
+
+                <input
+                    type="text"
+                    id="duration"
+                    name="duration"
+                    placeholder="Example: 3 Months">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="5"
+                    placeholder="Internship description"></textarea>
+            </div>
+
+            <button type="submit" class="btn">
+                Add Internship
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <section class="admin-list">
+
+        <h2>Existing Internships</h2>
+
+        {% if internships %}
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Company</th>
+                        <th>Location</th>
+                        <th>Skills</th>
+                        <th>Duration</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for internship in internships %}
+
+                    <tr>
+
+                        <td>{{ internship.title }}</td>
+
+                        <td>{{ internship.company }}</td>
+
+                        <td>{{ internship.location }}</td>
+
+                        <td>{{ internship.skills }}</td>
+
+                        <td>{{ internship.duration }}</td>
+
+                        <td>
+                            <a
+                                href="{{ url_for('edit', id=internship.id) }}"
+                                class="small-btn">
+                                Edit
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <p>
+            No internships have been added yet.
+        </p>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Students - Admin</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        AI Internship Recommendation - Admin
+    </div>
+
+    <nav>
+        <a href="{{ url_for('admin') }}">Admin Dashboard</a>
+        <a href="{{ url_for('students') }}">Students</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+
+</header>
+
+<main class="admin-container">
+
+    <section class="page-heading">
+
+        <h1>Registered Students</h1>
+
+        <p>
+            View students registered in the internship recommendation system.
+        </p>
+
+    </section>
+
+
+    {% if students %}
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>College</th>
+                    <th>Department</th>
+                    <th>CGPA</th>
+                    <th>Skills</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for student in students %}
+
+                <tr>
+
+                    <td>
+                        {{ student.id }}
+                    </td>
+
+                    <td>
+                        {{ student.name }}
+                    </td>
+
+                    <td>
+                        {{ student.email }}
+                    </td>
+
+                    <td>
+                        {{ student.college if student.college else '-' }}
+                    </td>
+
+                    <td>
+                        {{ student.department if student.department else '-' }}
+                    </td>
+
+                    <td>
+                        {{ student.cgpa if student.cgpa else '-' }}
+                    </td>
+
+                    <td>
+                        {{ student.skills if student.skills else '-' }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-state">
+
+        <h2>No Students Found</h2>
+
+        <p>
+            No students have registered yet.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</main>
+
+</body>
+</html>

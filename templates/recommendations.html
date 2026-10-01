@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recommendations - CareerAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="career-recommendation-page">
+
+    <!-- NAVBAR -->
+    <header class="career-recommendation-navbar">
+
+        <a href="{{ url_for('dashboard') }}"
+           class="career-recommendation-logo">
+            CareerAI
+        </a>
+
+        <nav class="career-recommendation-nav">
+
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('profile') }}">
+                Profile
+            </a>
+
+            <a href="{{ url_for('resume') }}">
+                Resume
+            </a>
+
+            <a href="{{ url_for('recommendations') }}"
+               class="active">
+                Recommendations
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="career-recommendation-main">
+
+        <div class="career-recommendation-wrapper">
+
+            <!-- PAGE HEADING -->
+            <section class="career-recommendation-heading">
+
+                <span>
+                    AI-POWERED CAREER MATCHING
+                </span>
+
+                <h1>
+                    Internship Recommendations
+                </h1>
+
+                <p>
+                    Your Career Agent has analyzed your profile and
+                    identified internship opportunities that match
+                    your skills.
+                </p>
+
+            </section>
+
+
+            <!-- SKILLS IDENTIFIED -->
+            {% if user_skills %}
+
+            <section class="career-skills-card">
+
+                <div class="career-section-title">
+
+                    <div class="career-section-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <h2>Skills Identified</h2>
+
+                        <p>
+                            Skills detected from your profile and resume.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="career-skills-list">
+
+                    {% for skill in user_skills %}
+
+                        <span class="career-skill-tag">
+                            {{ skill }}
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+            {% endif %}
+
+
+            <!-- RECOMMENDATIONS -->
+            {% if recommendations %}
+
+            <section class="career-internship-section">
+
+                <div class="career-section-heading">
+
+                    <div>
+                        <span>
+                            MATCHED OPPORTUNITIES
+                        </span>
+
+                        <h2>
+                            Recommended Internships
+                        </h2>
+                    </div>
+
+                    <div class="career-result-count">
+                        {{ recommendations|length }} Opportunities
+                    </div>
+
+                </div>
+
+
+                <div class="career-internship-grid">
+
+                    {% for internship in recommendations %}
+
+                    <article class="career-internship-card">
+
+                        <!-- MATCH -->
+                        <div class="career-match-row">
+
+                            <span class="career-match-label">
+                                AI MATCH
+                            </span>
+
+                            <span class="career-match-score">
+
+                                {% if internship.match_score is defined %}
+                                    {{ internship.match_score }}%
+                                {% elif internship.score is defined %}
+                                    {{ internship.score }}%
+                                {% else %}
+                                    Recommended
+                                {% endif %}
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- TITLE -->
+                        <h3>
+                            {{ internship.title }}
+                        </h3>
+
+
+                        <!-- COMPANY -->
+                        <p class="career-company">
+                            {{ internship.company }}
+                        </p>
+
+
+                        <!-- DETAILS -->
+                        <div class="career-internship-details">
+
+                            {% if internship.location %}
+
+                            <div>
+                                <span>📍</span>
+                                {{ internship.location }}
+                            </div>
+
+                            {% endif %}
+
+
+                            {% if internship.duration %}
+
+                            <div>
+                                <span>⏱</span>
+                                {{ internship.duration }}
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- SKILLS -->
+                        {% if internship.skills %}
+
+                        <div class="career-required-skills">
+
+                            <strong>
+                                Required Skills
+                            </strong>
+
+                            <p>
+                                {{ internship.skills }}
+                            </p>
+
+                        </div>
+
+                        {% endif %}
+
+
+                        <!-- DESCRIPTION -->
+                        {% if internship.description %}
+
+                        <p class="career-internship-description">
+                            {{ internship.description }}
+                        </p>
+
+                        {% endif %}
+
+                    </article>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+
+            {% else %}
+
+            <!-- EMPTY STATE -->
+            <section class="career-empty-state">
+
+                <div class="career-empty-icon">
+                    🤖
+                </div>
+
+                <h2>
+                    No Recommendations Available
+                </h2>
+
+                <p>
+                    Complete your profile, upload your resume and make
+                    sure internships have been added by the administrator.
+                </p>
+
+                <div class="career-empty-actions">
+
+                    <a href="{{ url_for('profile') }}"
+                       class="career-primary-btn">
+                        Complete Profile
+                    </a>
+
+                    <a href="{{ url_for('resume') }}"
+                       class="career-secondary-btn">
+                        Upload Resume
+                    </a>
+
+                </div>
+
+            </section>
+
+            {% endif %}
+
+
+            <!-- SKILL GAP -->
+            {% if skill_gaps %}
+
+            <section class="career-skill-gap">
+
+                <div class="career-section-title">
+
+                    <div class="career-gap-icon">
+                        +
+                    </div>
+
+                    <div>
+                        <h2>Skill Gap Analysis</h2>
+
+                        <p>
+                            Skills that may help improve your internship matches.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="career-gap-list">
+
+                    {% for gap in skill_gaps %}
+
+                        <div class="career-gap-tag">
+
+                            <strong>
+                                {{ gap.skill|title }}
+                            </strong>
+
+                            <span>
+                                Recommended by
+                                {{ gap.demand }}
+                                internship{% if gap.demand != 1 %}s{% endif %}
+                            </span>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="career-recommendation-footer">
+
+        <p>
+            © 2026 CareerAI · AI-Powered Career Assistant
+        </p>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile - CareerAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="career-profile-page">
+
+    <!-- NAVBAR -->
+    <header class="career-profile-navbar">
+
+        <a href="{{ url_for('dashboard') }}"
+           class="career-profile-logo">
+            CareerAI
+        </a>
+
+        <nav class="career-profile-nav">
+
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('resume') }}">
+                Resume
+            </a>
+
+            <a href="{{ url_for('recommendations') }}">
+                Recommendations
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- PROFILE CONTENT -->
+    <main class="career-profile-main">
+
+        <div class="career-profile-wrapper">
+
+            <!-- HEADING -->
+            <div class="career-profile-heading">
+
+                <span>
+                    CAREERAI PROFILE
+                </span>
+
+                <h1>
+                    Create Your Profile
+                </h1>
+
+                <p>
+                    Complete your profile to get better
+                    internship recommendations.
+                </p>
+
+            </div>
+
+
+            <!-- FORM CARD -->
+            <div class="career-profile-card">
+
+                {% with messages = get_flashed_messages() %}
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+                            <div class="career-profile-alert">
+                                {{ message }}
+                            </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% endwith %}
+
+
+                <form method="POST">
+
+                    <!-- FULL NAME -->
+                    <div class="career-profile-field">
+
+                        <label for="profile-name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="profile-name"
+                            name="name"
+                            value="{{ user.name if user else '' }}"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+
+                    <!-- COLLEGE -->
+                    <div class="career-profile-field">
+
+                        <label for="profile-college">
+                            College
+                        </label>
+
+                        <input
+                            type="text"
+                            id="profile-college"
+                            name="college"
+                            value="{{ user.college if user and user.college else '' }}"
+                            placeholder="Enter your college">
+
+                    </div>
+
+
+                    <!-- DEPARTMENT -->
+                    <div class="career-profile-field">
+
+                        <label for="profile-department">
+                            Department
+                        </label>
+
+                        <input
+                            type="text"
+                            id="profile-department"
+                            name="department"
+                            value="{{ user.department if user and user.department else '' }}"
+                            placeholder="Example: Computer Science and Engineering">
+
+                    </div>
+
+
+                    <!-- CGPA -->
+                    <div class="career-profile-field">
+
+                        <label for="profile-cgpa">
+                            CGPA
+                        </label>
+
+                        <input
+                            type="text"
+                            id="profile-cgpa"
+                            name="cgpa"
+                            value="{{ user.cgpa if user and user.cgpa else '' }}"
+                            placeholder="Enter your CGPA">
+
+                    </div>
+
+
+                    <!-- SKILLS -->
+                    <div class="career-profile-field">
+
+                        <label for="profile-skills">
+                            Skills
+                        </label>
+
+                        <textarea
+                            id="profile-skills"
+                            name="skills"
+                            rows="5"
+                            placeholder="Example: Python, Java, HTML, CSS, SQL">{{ user.skills if user and user.skills else '' }}</textarea>
+
+                        <small>
+                            Enter the skills you currently have.
+                        </small>
+
+                    </div>
+
+
+                    <!-- SAVE -->
+                    <button
+                        type="submit"
+                        class="career-profile-save">
+
+                        Save Profile
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="career-profile-footer">
+
+        <p>
+            © 2026 CareerAI · AI Internship Recommendation System
+        </p>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+name: AI Internship Recommendation Agent
+
+version: "1.0.0"
+
+description: >
+  A resume-driven AI career assistant that analyzes a student's PDF resume,
+  extracts relevant skills, matches those skills with available internships,
+  identifies missing skills, and provides personalized internship recommendations.
+
+purpose:
+  primary: >
+    Help students discover internship opportunities that are relevant to
+    their existing skills and identify skills they can improve.
+  domain: career_and_internship_recommendation
+
+inputs:
+  - name: resume
+    type: PDF
+    required: true
+    description: Student resume uploaded for analysis.
+
+  - name: internship_data
+    type: structured_data
+    required: true
+    description: Internship listings containing title, company, location, skills, duration, and description.
+
+outputs:
+  - name: extracted_skills
+    type: list
+    description: Skills identified from the uploaded resume.
+
+  - name: recommendations
+    type: list
+    description: Internship opportunities ranked according to skill relevance.
+
+  - name: skill_gaps
+    type: list
+    description: Skills required by relevant internships but missing from the resume.
+
+tools:
+  - name: ResumeTool
+    purpose: Extract text and relevant information from the uploaded PDF resume.
+
+  - name: InternshipTool
+    purpose: Retrieve available internship listings.
+
+  - name: RecommendationTool
+    purpose: Calculate internship relevance using resume skills and internship requirements.
+
+  - name: SkillGapTool
+    purpose: Identify missing skills between the student's profile and relevant internships.
+
+behavior:
+  workflow:
+    - receive_resume
+    - extract_resume_text
+    - identify_skills
+    - retrieve_internships
+    - calculate_skill_similarity
+    - generate_recommendations
+    - analyze_skill_gaps
+
+  rules:
+    - A resume must be uploaded before recommendations are generated.
+    - Recommendations must be based on skills identified from the uploaded resume.
+    - Internship listings must not be presented as personalized recommendations before resume analysis.
+    - Skill gaps should be derived from the requirements of relevant internships.
+    - The agent should provide explainable matching information.
+    - User resume data should be processed locally where supported by the application architecture.
+
+matching:
+  method: TF-IDF
+  similarity_measure: cosine_similarity
+  basis:
+    - resume_skills
+    - internship_required_skills
+
+architecture:
+  type: modular_agent
+  components:
+    - agent
+    - tools
+    - contracts
+    - adapters
+    - verification
+  runtime: Python
+  application: Flask
+  database: SQLite
+
+portability:
+  design_goal: >
+    Keep the agent's identity, behavior, tools, and contracts separated
+    from the application-specific runtime so the agent can be adapted
+    to other agent runtimes or frameworks.
+
+verification:
+  checks:
+    - resume_required_before_recommendation
+    - skill_extraction
+    - internship_matching
+    - skill_gap_analysis
+    - structured_agent_behavior
+
+privacy:
+  resume_processing: local
+  external_resume_sharing: false
+
+project:
+  repository: "https://github.com/Brindhar-code/AI-Internship-Recommendation-Agent"
+  category: AI Career Assistant
+  target_users: students
